@@ -22,8 +22,20 @@ function findMinValue(arr){
 
 /* BONUS MISSION: Refactor your sorting function to use recursion below:
  */
-
+function recursiveSortArray (unsortedArray, newArray=[]){ // declare function taking 2 parameters,
+  // an unsorted array and a default empty array)
+  if (unsortedArray.length===1){ // if unsorted array has 1 item, push last item into new array
+      newArray.push(unsortedArray[0]);
+  } else { // while unsorted array has more than 1 item, find min value and add to new array
+      newArray.push(findMinValue(unsortedArray)); // call minValue finder and push result to newArray
+      unsortedArray.splice(unsortedArray.indexOf(findMinValue(unsortedArray)),1); // Remove minimum value from OG array
+      recursiveSortArray(unsortedArray,newArray); // call recursive function again. 
+  }
+  return newArray; // exit function, return sorted array
+}
 //Sample arrays for testing:
 let nums1 = [5, 10, 2, 42];
 let nums2 = [-2, 0, -10, -44, 5, 3, 0, 3];
 let nums3 = [200, 5, 4, 10, 8, 5, -3.3, 4.4, 0];
+
+console.log(recursiveSortArray(nums1));
