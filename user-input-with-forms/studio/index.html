@@ -4,8 +4,30 @@
 	<meta charset="utf-8">
 	<script>
 		// TODO: create a handler
+		function setSearchEngine(){
+			console.log("Hello there! You clicked my button!");
+			// event.preventDefault; //prevents the page from refreshing-- can view console.logs that way. weird. 
+			
+			let actions = {
+    			"google": "https://www.google.com/",
+				"duckDuckGo": "https://duckduckgo.com/",
+				"bing": "https://www.bing.com/search",
+				"ask": "https://www.ask.com/web"
+				
+			}; // object that matches engine value to the URL
+
+			const engineSelected= document.querySelector('input[name=engine]:checked');
+			//doc query pulls result of radio input and assigns it to a variable (look at console!!)
+			console.log(engineSelected);
+
+			let form = document.getElementById('searchForm'); // declare form element locally... annoying.
+			let action = actions[engineSelected.value] // creates a variable that holds the URL of the selected engine
+			form.setAttribute('action', action); // uses DOM to set HTML form attribute to the selected URL.
+		}
     window.addEventListener("load", function(){
         // TODO: register the handler
+		const form = document.getElementById("searchForm"); // assigns form element 
+		form.addEventListener('submit', setSearchEngine); // Add an event listener to the 
     });
 	</script>
 </head>
@@ -14,6 +36,26 @@
 
 	<form id="searchForm">
     <!-- TODO: add form elements -->
-	</form>
+	<input type="text" name ="q"/>
+	<br>
 
+	<label> Google
+		 <input type="radio" name="engine" value="google"/>
+	</label> 
+
+	<label>DuckDuckGo
+		<input type="radio" name="engine" value="duckDuckGo"/>
+	</label>
+
+	<label>Bing
+		<input type="radio" name="engine" value="bing"/>
+	</label>
+
+	<label>Ask
+		<input type="radio" name="engine" value="ask"/>
+	</label>
+
+	<input type="submit" value="Go!"/>
+	</form>
+	
 </body>
