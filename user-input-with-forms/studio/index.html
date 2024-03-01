@@ -7,7 +7,19 @@
 		function setSearchEngine(){
 			console.log("Hello there! You clicked my button!");
 			// event.preventDefault; //prevents the page from refreshing-- can view console.logs that way. weird. 
-			
+			//validation:
+			const userInput=document.getElementById("userInput");
+			const engineSelected= document.querySelector('input[name=engine]:checked');
+			//doc query pulls result of radio input and assigns it to a variable (look at console!!)
+			console.log(engineSelected);
+		
+				if(userInput.value==="" || engineSelected.value===''){
+					validInput = false;
+					console.log(validInput);
+					window.alert("All fields are required!");
+					engineSelected = "";
+					userInput = '';
+				}
 			let actions = {
     			"google": "https://www.google.com/",
 				"duckDuckGo": "https://duckduckgo.com/",
@@ -16,9 +28,7 @@
 				
 			}; // object that matches engine value to the URL
 
-			const engineSelected= document.querySelector('input[name=engine]:checked');
-			//doc query pulls result of radio input and assigns it to a variable (look at console!!)
-			console.log(engineSelected);
+			
 
 			let form = document.getElementById('searchForm'); // declare form element locally... annoying.
 			let action = actions[engineSelected.value] // creates a variable that holds the URL of the selected engine
@@ -36,7 +46,7 @@
 
 	<form id="searchForm">
     <!-- TODO: add form elements -->
-	<input type="text" name ="q"/>
+	<input id="userInput" type="text" name ="q"/>
 	<br>
 
 	<label> Google
