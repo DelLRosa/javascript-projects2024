@@ -11,15 +11,15 @@ let desserts = ['apple', 'banana', 'more kale', 'ice cream', 'chocolate', 'kiwi'
 
 function mealAssembly(protein, grains, veggies, beverages, desserts, numMeals) {
   let pantry = [protein, grains, veggies, beverages, desserts];
-  let meals = [];
-  /// Part A #2: Write a ``for`` loop inside this function
-  /// Code your solution for part A #2 below this comment (and above the return statement) ... ///
-  for (let i=0; i<numMeals;i++){
-    let newMeal=[];
-    for (let j=0; j<pantry.length;j++){
-      newMeal.push(pantry[j][i]);
+  let meals = []; //holds all of the finished meals 
+  
+  for(let i=0; i<numMeals; i++){ // iterates until we have enough meals. 
+    let meal = []; // holds individual meal while we build it
+    for (let j=0; j<pantry.length;j++ ) { //creating the individual meals 
+      meal.push(pantry[j][i]); //takes one item from each pantry  at the same index. 
+      // console.log(meal); 
     }
-    meals.push(newMeal);
+    meals.push(meal); // push idividual meal to final array
   }
 
   return meals;
@@ -27,12 +27,11 @@ function mealAssembly(protein, grains, veggies, beverages, desserts, numMeals) {
 
 
 function askForNumber() {
-  numMeals = input.question("How many meals would you like to make? ");
-  
-  /// CODE YOUR SOLUTION TO PART B here ///
-  while(numMeals<1 || numMeals>6) {
-    numMeals = input.question("Please enter a number of meals between 1 and 6. How many meals would you like to make? ");
+  numMeals = input.question("How many meals would you like to make?\t");
+  while(numMeals>6 || numMeals<1 || isNaN(numMeals)){
+    numMeals = input.question("please enter a valid number between 1 and 6:\t");
   }
+git 
   return numMeals;
 }
 
@@ -52,7 +51,7 @@ function runProgram() {
   /// Change the final input variable (aka numMeals) here to ensure your solution makes the right number of meals ///
   /// We've started with the number 2 for now. Does your solution still work if you change this value? ///
   
-  // let meals = mealAssembly(protein, grains, veggies, beverages, desserts, 3);
+  // let meals = mealAssembly(protein, grains, veggies, beverages, desserts, 2);
   // console.log(meals)
   
 
