@@ -1,3 +1,38 @@
+
+function reverseCharacters(str){
+let reverse;
+    if(isNaN(str)){
+        reverse = str.split("").reverse().join("");
+    } else {
+        str = String(str);
+        reverse = str.split("").reverse().join("");
+        reverse= Number(reverse);
+    }
+
+    return reverse;
+}
+let strVar = 1234;
+console.log(reverseCharacters(strVar));
+
+
+function arrayReverse(array){
+    let reverseArray = [];
+
+    for(let i = 0; i<array.length; i++){
+        let newString = reverseCharacters(array[i]);
+        reverseArray.push(newString);
+    }
+    return reverseArray.reverse();
+}
+
+let arrayTest1 = ['apple', 'potato', 'Capitalized Words'];
+let arrayTest2 = [123, 8897, 42, 1168, 8675309];
+let arrayTest3 = ['hello', 'world', 123, 'orange'];
+
+console.log(arrayReverse(arrayTest1));
+
+
+
 //We want to COMPLETELY reverse an array by flipping the order of the entries AND flipping the order of characters in each element.
 
 // Part One: Reverse Characters
@@ -26,9 +61,7 @@
 // 5. Return the final, reversed array.
 // 6. Be sure to print the results from each test case in order to verify your code.
 
-let arrayTest1 = ['apple', 'potato', 'Capitalized Words'];
-let arrayTest2 = [123, 8897, 42, 1168, 8675309];
-let arrayTest3 = ['hello', 'world', 123, 'orange'];
+
 
 // Bonus Missions
 
