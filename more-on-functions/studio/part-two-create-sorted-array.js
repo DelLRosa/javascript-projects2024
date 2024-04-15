@@ -18,24 +18,65 @@ function findMinValue(arr){
 5) Return the new sorted array.
 6) Be sure to print the results in order to verify your code.*/
 
-//Your function here...
+//Your function here..
 
-/* BONUS MISSION: Refactor your sorting function to use recursion below:
- */
-function recursiveSortArray (unsortedArray, newArray=[]){ // declare function taking 2 parameters,
-  // an unsorted array and a default empty array)
-  if (unsortedArray.length===1){ // if unsorted array has 1 item, push last item into new array
-      newArray.push(unsortedArray[0]);
-  } else { // while unsorted array has more than 1 item, find min value and add to new array
-      newArray.push(findMinValue(unsortedArray)); // call minValue finder and push result to newArray
-      unsortedArray.splice(unsortedArray.indexOf(findMinValue(unsortedArray)),1); // Remove minimum value from OG array
-      recursiveSortArray(unsortedArray,newArray); // call recursive function again. 
+function sortArrayLowHigh(arr){
+  let newArr = [];
+  let minValIdx=0;
+  while(arr.length>0){
+    newArr.push(findMinValue(arr));
+    minValIdx=arr.indexOf(findMinValue(arr));
+    // console.log(newArr);
+    arr.splice(minValIdx,1);
   }
-  return newArray; // exit function, return sorted array
+
+  return newArr;
 }
-//Sample arrays for testing:
+ v
+
+// function tuckSort(array){
+//   if (array.length < 1) {
+//     return array
+//   } else {
+//     return (array.splice(array.indexOf(findMinValue(array)),1)).concat(sortArrayLowToHigh(array))
+//   }
+// }
+// console.log(sortArrayLowToHigh(nums2))
+
+// function sortNumRe(needSort) {
+//   let order = [];
+
+//   if (0 === needSort.length) {
+
+//     return order
+//   } 
+//   order.push(findMinValue(needSort));
+//      let indexOfMinValue = needSort.indexOf(findMinValue(needSort));
+//      needSort.splice(indexOfMinValue, 1)
+
+//   return order.concat(sortNumRe(needSort));
+// }
+// console.log(sortNumRe(nums1))
+
+function recurseSort(arr) {
+  // base
+  if (arr.length === 0) {
+    return [];
+  }
+  // recurse
+  let minValue = findMinValue(arr);
+  let minValueIdx = arr.indexOf(minValue);
+  return [minValue].concat(recurseSort(arr.toSpliced(minValueIdx,1)));
+}
+
+
+
+
+
 let nums1 = [5, 10, 2, 42];
 let nums2 = [-2, 0, -10, -44, 5, 3, 0, 3];
 let nums3 = [200, 5, 4, 10, 8, 5, -3.3, 4.4, 0];
-
-console.log(recursiveSortArray(nums1));
+/* BONUS MISSION: Refactor your sorting function to use recursion below:
+ */
+console.log(recursiveSortArray(nums3));
+//Sample arrays for testing:
